@@ -19,6 +19,14 @@ export const deleteProducts = createAsyncThunk(
   }
 );
 
+export const createProducts = createAsyncThunk(
+  "productR/createProducts",
+  async (product) => {
+    const response = await axios.post(BASE_URL, product);
+    return response.data;
+  }
+);
+
 const initialState = {
   isLoading: false,
   products: [],
@@ -47,6 +55,9 @@ export const productSlice = createSlice({
         state.products = state.products.filter(
           (product) => product.id !== action.payload
         );
+      })
+      .addCase(createProducts.fulfilled, (state, action) => {
+        state.products.push(action.payload);
       });
   },
 });

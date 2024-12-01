@@ -15,7 +15,7 @@ const ProductView = () => {
       {isLoading && <h4>Data is Loading...</h4>}
       {error && <p>{error}</p>}
       <section>
-        <h1>E-Commerce CRUD Application</h1>
+
         {products &&
           products.map((product) => {
             return (
