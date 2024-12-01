@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "./productSlice";
+import { deleteProducts, fetchProducts } from "./productSlice";
 
 const ProductView = () => {
   const { isLoading, products, error } = useSelector((state) => state.productR);
@@ -24,7 +24,14 @@ const ProductView = () => {
                 <p>{product.description}</p>
 
                 <p>Price: ${product.price}</p>
-                <small>Category:{product.category}</small>
+                <p>Category:{product.category}</p>
+                <button
+                  onClick={() => {
+                    dispatch(deleteProducts(product.id));
+                  }}
+                >
+                  Delete
+                </button>
               </article>
             );
           })}
